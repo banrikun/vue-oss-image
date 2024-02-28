@@ -2,10 +2,11 @@
 </script>
 
 <template>
-<div>
-  Demo
-</div>
+  <div>
+    <img v-img="'/example.jpg'">
+  </div>
 </template>
 
-<style module>
+<style>
+* { margin: 0; padding: 0; }
 </style>

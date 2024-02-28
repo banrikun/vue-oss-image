@@ -1,28 +1,26 @@
-import { TUrl, checkUrl } from './utils'
+import { TUrl, checkUrl, deviceRatio } from './utils'
 
 type TSizeParams = {
   resizeMode?: 'lfit' | 'mfit' | 'fill' | 'pad' | 'fixed' // 默认为 fill
+  ratio?: number
   width?: number
   height?: number
   long?: number
   short?: number
-  ratio?: number
 }
 const getSizeQueryString = (params: TSizeParams) => {
   const _mode = params.resizeMode || 'fill'
   const _ratio = typeof params.ratio === 'number' && params.ratio >= 1
     ? Math.floor(params.ratio)
-    : 1
+    : deviceRatio
   const _queryList = []
 
-  // 宽度高度可单独设置或共存，最长最短边只可单独设置
   if (params.width || params.height) {
-    params.width ? _queryList.push(`w_${params.width * _ratio}`) : null
-    params.height ? _queryList.push(`h_${params.height * _ratio}`) : null
-  } else if (params.long) {
-    _queryList.push(`l_${params.long * _ratio}`)
-  } else if (params.short) {
-    _queryList.push(`s_${params.short * _ratio}`)
+    params.width ? _queryList.push(`w_${Math.floor(params.width * _ratio)}`) : null
+    params.height ? _queryList.push(`h_${Math.floor(params.height * _ratio)}`) : null
+  } else if (params.long || params.short) {
+    params.long ? _queryList.push(`l_${Math.floor(params.long * _ratio)}`) : null
+    params.short ? _queryList.push(`s_${Math.floor(params.short * _ratio)}`) : null
   }
 
   return _queryList.length
@@ -44,13 +42,14 @@ const getFormatQueryString = (format?: TFormat) => {
     : ''
 }
 
-export interface IComposerParams extends TSizeParams {
+export type TComposerParams = TSizeParams & {
   host?: TUrl
-  path: TUrl
+  path?: TUrl
   quality?: TQuality
   format?: TFormat
 }
-const ossUrlComposer = (params: IComposerParams) => {
+const compose = (params: TComposerParams) => {
+  if (!params.path) return ''
   const _baseUrl = checkUrl(params.host) && !checkUrl(params.path)
     ? params.host + params.path
     : params.path
@@ -67,4 +66,4 @@ const ossUrlComposer = (params: IComposerParams) => {
   return _baseUrl + _queryString
 }
 
-export default ossUrlComposer
+export default compose
