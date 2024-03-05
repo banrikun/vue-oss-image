@@ -1,6 +1,6 @@
 import { deviceRatio } from './utils'
 
-const resolveUrl = (host?: string, path?: string) => {
+export const resolveUrl = (host?: string, path?: string) => {
   const _host = (host || '').replace(/\/$/, '')
   const _path = (path || '').replace(/^\.*\//, '')
   return /^https?:\/\//.test(_path)
@@ -16,7 +16,7 @@ type TSizeParams = {
   long?: number
   short?: number
 }
-const getSizeQueryString = (params: TSizeParams) => {
+export const getSizeQueryString = (params: TSizeParams) => {
   const _mode = params.resizeMode || 'fill'
   const _ratio = typeof params.ratio === 'number' && params.ratio >= 1
     ? params.ratio
@@ -37,17 +37,17 @@ const getSizeQueryString = (params: TSizeParams) => {
 }
 
 type TQuality = number
-const getQualityQueryString = (quality?: TQuality) => {
+export const getQualityQueryString = (quality?: TQuality) => {
   return typeof quality === 'number' && quality >= 1 && quality < 100
     ? `quality,q_${Math.floor(quality)}`
     : ''
 }
 
-type TFormat = 'jpg' | 'png' | 'webp' | 'bmp' | 'gif' | 'tiff' // 默认为 webp
+type TFormat = 'jpg' | 'png' | 'webp' | 'bmp' | 'gif' | 'tiff' // 默认为原图格式
 const getFormatQueryString = (format?: TFormat) => {
   return format && typeof format === 'string'
     ? `format,${format}`
-    : 'format,webp'
+    : ''
 }
 
 export type TComposerParams = TSizeParams & {

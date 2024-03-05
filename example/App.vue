@@ -1,8 +1,10 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
   <div>
+    <div>hello world</div>
     <div class="list">
       <img v-img="'example.jpg'">
       <img v-img="{ path: 'example.jpg' }">

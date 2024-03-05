@@ -14,7 +14,7 @@ export const copyKeys = (params: TCopyKeysParams) => {
   })
 }
 
-export const deviceRatio = typeof window.devicePixelRatio === 'number'
+export const deviceRatio = window && typeof window.devicePixelRatio === 'number'
   ? window.devicePixelRatio
   : 1
 

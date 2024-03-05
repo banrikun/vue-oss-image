@@ -25,8 +25,8 @@ const createHooks = (ossImage: TOssImage) => {
   return {
     mounted(el: HTMLElement, binding: THookBinding) {
       const vImg = new ossImage(binding.value)
-      if (vImg.loadingUrl) {
-        vImg.setUrl(el, vImg.loadingUrl)
+      if (vImg.loadingUrl || vImg.errorUrl) {
+        vImg.loadingUrl && vImg.setUrl(el, vImg.loadingUrl)
         preload(el, vImg)
       } else if (vImg.url) {
         vImg.setUrl(el, vImg.url)

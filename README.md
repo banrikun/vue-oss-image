@@ -3,11 +3,9 @@
 
 ## 基础用法
 ```bash
-# 安装依赖
 npm install vue-oss-image
 ```
 ```js
-// 配置插件
 import { createApp } from 'vue'
 import VueOssImage from 'vue-oss-image'
 import App from './App.vue'
@@ -33,7 +31,7 @@ app.mount('#app')
 | 参数名 | 全局 | 指令 | 描述 |
 |-|:-:|:-:|-|
 | quality | ✅ | ✅ | [Number] 压缩质量，默认不压缩 |
-| format | ✅ | ✅ | [String] 格式转换，支持 webp（默认）/jpg/png/bmp/gif/tiff |
+| format | ✅ | ✅ | [String] 格式转换，支持 webp/jpg/png/bmp/gif/tiff |
 | resizeMode | ✅ | ✅ | [String] 缩放模式，支持 fill（默认）/lfit/mfit/pad/fixed |
 | ratio | ✅ | ✅ | [Number] 默认 devicePixelRatio |
 | loading | ✅ | ✅ | [String] 加载中显示的图片，其他与 path 一致 |
