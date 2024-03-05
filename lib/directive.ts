@@ -6,7 +6,7 @@ type THookBinding = {
 }
 type TVueImg = InstanceType<TOssImage>
 
-export const createHooks = (ossImage: TOssImage) => {
+const createHooks = (ossImage: TOssImage) => {
   const preload = (el: HTMLElement, vImg: TVueImg) => {
     if (!vImg.url) return
 
@@ -27,8 +27,10 @@ export const createHooks = (ossImage: TOssImage) => {
       const vImg = new ossImage(binding.value)
       if (vImg.loadingUrl) {
         vImg.setUrl(el, vImg.loadingUrl)
+        preload(el, vImg)
+      } else if (vImg.url) {
+        vImg.setUrl(el, vImg.url)
       }
-      preload(el, vImg)
     },
     updated(el: HTMLElement, binding: THookBinding) {
       const vImg = new ossImage(binding.value)
@@ -36,3 +38,5 @@ export const createHooks = (ossImage: TOssImage) => {
     }
   }
 }
+
+export default createHooks

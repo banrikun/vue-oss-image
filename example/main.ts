@@ -6,6 +6,7 @@ const app = createApp(App)
 
 app.use(VueOssImage, {
   host: 'https://oss-console-img-demo-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com',
-  ratio: 2
+  ratio: 1
 })
+
 app.mount('#app')

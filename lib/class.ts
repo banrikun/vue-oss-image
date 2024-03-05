@@ -1,7 +1,8 @@
 import ossUrlComposer, { TComposerParams } from './composer'
-import { copyKeys } from './utils'
+import { copyKeys, setImageUrl } from './utils'
 
 export type TGlobalOptions = {
+  attr?: string
   host?: TComposerParams['host']
   resizeMode?: TComposerParams['resizeMode']
   ratio?: TComposerParams['ratio']
@@ -11,6 +12,7 @@ export type TGlobalOptions = {
   error?: TComposerParams['path']
 }
 export class OssImageGlobal {
+  attr?: string
   path?: TComposerParams['path']
   loading?: TComposerParams['path']
   error?: TComposerParams['path']
@@ -20,7 +22,9 @@ export class OssImageGlobal {
       source: options,
       target: this,
       keys: [
+        'attr',
         'host',
+
         'quality',
         'format',
 
@@ -45,6 +49,7 @@ export class OssImageGlobal {
       target: params,
       keys: [
         'host',
+
         'quality',
         'format',
 
@@ -74,17 +79,16 @@ export class OssImageGlobal {
 
   setUrl(el: HTMLElement, url: string) {
     if (!el) return
-    const tagName = el.tagName.toLowerCase()
-    if (tagName === 'img') {
-      el.setAttribute('src', url)
+    if (this.attr && typeof this.attr === 'string') {
+      el.setAttribute(this.attr, url)
     } else {
-      el.style.backgroundImage = `url(${url})`
+      setImageUrl(el, url)
     }
   }
 }
 
 export type TOssImageOptions = (TGlobalOptions & TComposerParams) | string
-export const createOssImage = (globalOptions: TGlobalOptions) => {
+const createOssImage = (globalOptions: TGlobalOptions) => {
   class OssImage extends OssImageGlobal {
     constructor(options: TOssImageOptions) {
       super(globalOptions)
@@ -96,8 +100,10 @@ export const createOssImage = (globalOptions: TGlobalOptions) => {
         source: _options,
         target: this,
         keys: [
+          'attr',
           'host',
           'path',
+
           'quality',
           'format',
 
@@ -118,4 +124,5 @@ export const createOssImage = (globalOptions: TGlobalOptions) => {
   return OssImage
 }
 
+export default createOssImage
 export type TOssImage = ReturnType<typeof createOssImage>

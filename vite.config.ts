@@ -8,11 +8,11 @@ const envOptions = process.env.NODE_ENV === 'dev'
   } : {
     build: {
       lib: {
-        entry: resolve(__dirname, 'lib/main.ts'),
+        entry: resolve(__dirname, 'lib/index.ts'),
         name: 'VueOssImage',
-        fileName: 'vue-oss-image',
+        fileName: 'lib',
       },
-      outDir: path.resolve(__dirname, 'dist'),
+      outDir: resolve(__dirname, 'dist'),
       rollupOptions: {
         external: ['vue'],
         output: {

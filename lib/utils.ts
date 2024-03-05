@@ -1,8 +1,3 @@
-export type TUrl = string
-export const checkUrl = (url?: TUrl) => {
-  return /^https?:\/\//.test(url || '')
-}
-
 const hasProp = (obj: object, prop: string) => Object.prototype.hasOwnProperty.call(obj, prop)
 
 type TCopyKeysParams = {
@@ -22,3 +17,13 @@ export const copyKeys = (params: TCopyKeysParams) => {
 export const deviceRatio = typeof window.devicePixelRatio === 'number'
   ? window.devicePixelRatio
   : 1
+
+export const setImageUrl = (el: HTMLElement, url: string) => {
+  if (!el) return
+  const tagName = el.tagName.toLowerCase()
+  if (tagName === 'img') {
+    el.setAttribute('src', url)
+  } else {
+    el.style.backgroundImage = `url(${url})`
+  }
+}
