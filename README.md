@@ -2,8 +2,12 @@
 一款 Vue 3 指令插件，用于生成阿里云 OSS 图片处理参数。
 
 ## 基础用法
+```bash
+# 安装依赖
+npm install vue-oss-image
+```
 ```js
-// 安装插件
+// 配置插件
 import { createApp } from 'vue'
 import VueOssImage from 'vue-oss-image'
 import App from './App.vue'

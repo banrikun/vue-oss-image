@@ -8,6 +8,11 @@
   },
   "main": "dist/lib.js",
   "types": "lib/index.ts",
+  "homepage": "https://github.com/banrikun/vue-oss-image",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:banrikun/vue-oss-image.git"
+  },
   "devDependencies": {
     "@types/node": "^20.11.24",
     "@vitejs/plugin-vue": "^4.5.2",
