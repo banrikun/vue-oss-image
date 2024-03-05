@@ -10,7 +10,7 @@ import App from './App.vue'
 
 const app = createApp(App)
 app.use(VueOssImage, {
-   // global options
+  // global options
 })
 app.mount('#app')
 ```
@@ -22,7 +22,7 @@ app.mount('#app')
 <img v-img="{ path: 'example.jpg', width: 100, height: 100 }">
 
 <!-- 非 img 标签将设置为背景 -->
-<div v-img="{ path: 'example.jpg', width: 100, height: 100 }"></div>
+<div v-img="{ path: 'example.jpg', long: 100, short: 100 }"></div>
 ```
 
 ## 参数列表
@@ -46,7 +46,7 @@ app.mount('#app')
 ### 自定义属性、方法、指令名
 ```js
 const myOssImage = VueOssImage.create({
-   // global options
+  // global options
 })
 // 添加属性或方法
 myOssImage.prototype.compose = () => {}
