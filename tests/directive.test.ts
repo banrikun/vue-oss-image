@@ -135,4 +135,19 @@ describe('directives', () => {
     await nextTick()
     expect(wrapper.html()).toContain('background-image')
   })
+
+  it('<div> attr', async () => {
+    const wrapper = createWrapper(
+      {
+        host: 'https://oss-console-img-demo-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com'
+      },
+      {
+        path: 'example.jpg',
+        attr: 'data-src'
+      },
+      divComponent
+    )
+    await nextTick()
+    expect(wrapper.html()).toContain('data-src="https://oss-console-img-demo-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/example.jpg"')
+  })
 })
