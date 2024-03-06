@@ -1,4 +1,8 @@
 # Vue OSS Image
+![NPM Version](https://img.shields.io/npm/v/vue-oss-image)
+![Support Vue3](https://img.shields.io/badge/vue-3.x-42b883)
+![GitHub License](https://img.shields.io/github/license/banrikun/vue-oss-image)
+
 A custom directive designed for Vue 3 to generate Alibaba Cloud OSS image URLs.
 
 ## Quick Start
@@ -39,7 +43,7 @@ app.mount('#app')
 | loading | ✅ | ✅ | [String] Displayed during loading, with other behaviors consistent with `path` |
 | error | ✅ | ✅ | [String] Displayed in case of loading error, with other behaviors consistent with `path` |
 | attr | ✅ | ✅ | [String] Specify the attribute for replacing the image URL, default is determined based on the element's `tagName` |
-| host | ✅ | ✅ | [String] Prefix for image urls |
+| host | ✅ | ✅ | [String] Prefix for image URLs |
 | path | 🚫 | ✅ | [String] If it starts with `http(s)://`, `host` will be ignored. If it's a `base64` image, it will not be processed |
 | width | 🚫 | ✅ | [Number] Cannot be used with `long` or `short` |
 | height | 🚫 | ✅ | [Number] Cannot be used with `long` or `short` |

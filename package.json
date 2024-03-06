@@ -1,11 +1,13 @@
 {
   "name": "vue-oss-image",
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "test": "vitest"
+    "test": "vitest watch",
+    "upload": "vitest run && npm run build && npm publish"
   },
   "main": "dist/lib.js",
   "types": "lib/index.ts",

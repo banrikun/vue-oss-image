@@ -32,7 +32,7 @@ export default defineConfig(({ command }) => {
       test: {
         include: [resolve(__dirname, 'tests/**/*.test.ts')],
         environment: 'jsdom',
-        testTimeout: 10000
+        watch: false
       },
       plugins: [vue()],
       publicDir: false
