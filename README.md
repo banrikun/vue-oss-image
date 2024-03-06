@@ -30,7 +30,7 @@ app.mount('#app')
 <!-- => src="https://demo.com/example.jpg?x-oss-process=image/resize,m_fill,w_200,h_100" -->
 
 <div v-img="{ path: 'example.jpg' }"></div>
-<!-- style.backgroundImage = 'url(https://test.com/example.jpg)' -->
+<!-- => style.backgroundImage = 'url(https://test.com/example.jpg)' -->
 ```
 
 ## Options
