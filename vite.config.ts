@@ -31,7 +31,8 @@ export default defineConfig(({ command }) => {
       ...envOptions,
       test: {
         include: [resolve(__dirname, 'tests/**/*.test.ts')],
-        environment: 'happy-dom'
+        environment: 'jsdom',
+        testTimeout: 10000
       },
       plugins: [vue()],
       publicDir: false

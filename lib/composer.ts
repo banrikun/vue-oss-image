@@ -56,8 +56,11 @@ export type TComposerParams = TSizeParams & {
   quality?: TQuality
   format?: TFormat
 }
+const isDataImage = (path: string) => /^data:image/.test(path)
 const compose = (params: TComposerParams) => {
   if (!params.path) return ''
+  if (isDataImage(params.path)) return params.path
+
   const _baseUrl = resolveUrl(params.host, params.path)
   const _queryStringList = [
     getSizeQueryString(params),

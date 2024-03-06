@@ -16,8 +16,11 @@
       <img v-img="{ path: 'example.jpg', width: 100, resizeMode: 'lfit' }">
       <img v-img="{ path: 'example.jpg', width: 100, ratio: 3 }">
       <img v-img="{ path: 'example.jpg', width: 100, height: 30, resizeMode: 'lfit' }">
-      <img v-img="{ path: 'example.jpg', width: 100, height: 30, resizeMode: 'lfit', ratio: 3 }">
-      <img v-img="{ path: 'example.jpg', width: 100, resizeMode: 'lfit', ratio: 4, quality: 10 }">
+      <img v-img="{ loading: 'https://oss-console-img-demo-cn-hangzhou-3az.oss-cn-hangzhou.aliyuncs.com/example.gif', width: 100, height: 30, resizeMode: 'lfit', ratio: 3 }">
+      <img v-img="{ loading: 'https://oss-console-img-demo-cn-hangzhou-3az.oss-cn-hangzhou.aliyuncs.com/example.gif', path: 'example111.jpg', width: 100, resizeMode: 'lfit', ratio: 4, quality: 10 }">
+      <img v-img="{ loading: 'https://oss-console-img-demo-cn-hangzhou-3az.oss-cn-hangzhou.aliyuncs.com/example.gif', error: 'error.jpg', path: 'example111.jpg', width: 100, resizeMode: 'lfit', ratio: 4, quality: 10 }">
+      <img v-img="{ loading: 'https://oss-console-img-demo-cn-hangzhou-3az.oss-cn-hangzhou.aliyuncs.com/example.gif', path: 'example.jpg', width: 100, resizeMode: 'lfit', ratio: 4, quality: 10 }">
+      <img v-img="{ loading: 'https://oss-console-img-demo-cn-hangzhou-3az.oss-cn-hangzhou.aliyuncs.com/example.gif', path: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=', width: 100, resizeMode: 'lfit', ratio: 4, quality: 10 }">
     </div>
   </div>
 </template>

@@ -141,4 +141,17 @@ test('compose', () => {
       ratio: 2
     })
   ).toBe('https://www.example.com/path/to/image.jpg?x-oss-process=image/resize,m_fill,w_200,h_100/quality,q_80/format,webp')
+
+  expect(
+    compose({
+      host: 'https://www.example.com',
+      path: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=',
+      resizeMode: 'fill',
+      quality: 80,
+      format: 'webp',
+      width: 100,
+      height: 50,
+      ratio: 2
+    })
+  ).toBe('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=')
 })

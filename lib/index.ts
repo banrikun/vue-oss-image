@@ -5,7 +5,7 @@ import { copyKeys, setImageUrl } from './utils'
 
 type TInstallOptions = TOssImage | TGlobalOptions
 const install = (app: any, options?: TInstallOptions) => {
-  const ossImage = options && (options as TOssImage).prototype && (options as TOssImage).prototype instanceof OssImageGlobal
+  const ossImage = (options as TOssImage)?.prototype instanceof OssImageGlobal
     ? options
     : createOssImage(options as TGlobalOptions)
 

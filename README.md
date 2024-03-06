@@ -1,9 +1,9 @@
 # Vue OSS Image
-一款 Vue 3 指令插件，用于生成阿里云 OSS 图片处理参数。
+A custom directive designed for Vue 3 to generate Alibaba Cloud OSS image URLs.
 
-## 基础用法
+## Quick Start
 ```bash
-npm install vue-oss-image
+npm install vue-oss-image --save
 ```
 ```js
 import { createApp } from 'vue'
@@ -13,48 +13,49 @@ import App from './App.vue'
 const app = createApp(App)
 app.use(VueOssImage, {
   // global options
+  host: 'https://test.com',
+  resizeMode: 'fill'
 })
 app.mount('#app')
 ```
 ```html
-<!-- 只使用 path -->
 <img v-img="'example.jpg'">
+<!-- => src="https://test.com/example.jpg" -->
 
-<!-- 更多参数，可覆盖全局设置 -->
-<img v-img="{ path: 'example.jpg', width: 100, height: 100 }">
+<img v-img="{ host: 'https://demo.com', path: '/example.jpg', width: 100, height: 50, ratio: 2 }">
+<!-- => src="https://demo.com/example.jpg?x-oss-process=image/resize,m_fill,w_200,h_100" -->
 
-<!-- 非 img 标签将设置为背景 -->
-<div v-img="{ path: 'example.jpg', long: 100, short: 100 }"></div>
+<div v-img="{ path: 'example.jpg' }"></div>
+<!-- style.backgroundImage = 'url(https://test.com/example.jpg)' -->
 ```
 
-## 参数列表
-| 参数名 | 全局 | 指令 | 描述 |
+## Options
+| Name | Global | Directive | Description |
 |-|:-:|:-:|-|
-| quality | ✅ | ✅ | [Number] 压缩质量，默认不压缩 |
-| format | ✅ | ✅ | [String] 格式转换，支持 webp/jpg/png/bmp/gif/tiff |
-| resizeMode | ✅ | ✅ | [String] 缩放模式，支持 fill（默认）/lfit/mfit/pad/fixed |
-| ratio | ✅ | ✅ | [Number] 默认 devicePixelRatio |
-| loading | ✅ | ✅ | [String] 加载中显示的图片，其他与 path 一致 |
-| error | ✅ | ✅ | [String] 加载失败显示的图片，其他与 path 一致 |
-| attr | ✅ | ✅ | [String] 指定设置的属性名，默认根据 tagName 判断 |
-| host | ✅ | ✅ | [String] 地址前缀 |
-| path | 🚫 | ✅ | [String] 图片路径，以 http(s):// 开头则无视 host |
-| width | 🚫 | ✅ | [Number] 宽度，不可与 long 或 short 共用 |
-| height | 🚫 | ✅ | [Number] 高度，不可与 long 或 short 共用 |
-| long | 🚫 | ✅ | [Number] 长边，不可与 width 或 height 共用 |
-| short | 🚫 | ✅ | [Number] 短边，不可与 width 或 height 共用 |
+| quality | ✅ | ✅ | [Number] Quality |
+| format | ✅ | ✅ | [String] Format conversion, supports `webp` `jpg` `png` `bmp` `gif` `tiff` |
+| resizeMode | ✅ | ✅ | [String] Resize mode，supports `fill` `lfit` `mfit` `pad` `fixed`, default is `fill` |
+| ratio | ✅ | ✅ | [Number] Resize ratio, default is `window.devicePixelRatio` |
+| loading | ✅ | ✅ | [String] Displayed during loading, with other behaviors consistent with `path` |
+| error | ✅ | ✅ | [String] Displayed in case of loading error, with other behaviors consistent with `path` |
+| attr | ✅ | ✅ | [String] Specify the attribute for replacing the image URL, default is determined based on the element's `tagName` |
+| host | ✅ | ✅ | [String] Prefix for image urls |
+| path | 🚫 | ✅ | [String] If it starts with `http(s)://`, `host` will be ignored. If it's a `base64` image, it will not be processed |
+| width | 🚫 | ✅ | [Number] Cannot be used with `long` or `short` |
+| height | 🚫 | ✅ | [Number] Cannot be used with `long` or `short` |
+| long | 🚫 | ✅ | [Number] Cannot be used with `width` or `height` |
+| short | 🚫 | ✅ | [Number] Cannot be used with `width` or `height` |
 
-## 高阶用法
-### 自定义属性、方法、指令名
+## Advanced Usage
+### Custom Properties / Methods / Directive Name
 ```js
 const myOssImage = VueOssImage.create({
   // global options
 })
-// 添加属性或方法
 myOssImage.prototype.compose = () => {}
-// 使用 myOssImage 代替 global options 对象
+// Using myOssImage instead of the global options object
 app.use(VueOssImage, myOssImage)
 
-// 也可以自定义指令名，此时无需再用 Vue.use 或 app.use
+// Custom directive name. In this case, there's no need to use Vue.use or app.use
 app.directive('my-directive', VueOssImage.createHooks(myOssImage))
 ```
