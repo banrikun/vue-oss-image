@@ -23,7 +23,7 @@ const createHooks = (ossImage: TOssImage) => {
   }
 
   return {
-    mounted(el: HTMLElement, binding: THookBinding) {
+    created(el: HTMLElement, binding: THookBinding) {
       const vImg = new ossImage(binding.value)
       if (vImg.loadingUrl || vImg.errorUrl) {
         vImg.loadingUrl && vImg.setUrl(el, vImg.loadingUrl)
@@ -32,7 +32,8 @@ const createHooks = (ossImage: TOssImage) => {
         vImg.setUrl(el, vImg.url)
       }
     },
-    updated(el: HTMLElement, binding: THookBinding) {
+
+    beforeUpdate(el: HTMLElement, binding: THookBinding) {
       const vImg = new ossImage(binding.value)
       preload(el, vImg)
     }

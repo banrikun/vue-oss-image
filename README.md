@@ -51,7 +51,8 @@ app.mount('#app')
 | short | 🚫 | ✅ | [Number] Cannot be used with `width` or `height` |
 
 ## Advanced Usage
-### Custom Properties / Methods / Directive Name
+
+### Custom Properties / Methods
 ```js
 const myOssImage = VueOssImage.create({
   // global options
@@ -59,7 +60,30 @@ const myOssImage = VueOssImage.create({
 myOssImage.prototype.compose = () => {}
 // Using myOssImage instead of the global options object
 app.use(VueOssImage, myOssImage)
+```
 
-// Custom directive name. In this case, there's no need to use Vue.use or app.use
+### Custom Directive Name
+```js
+const myOssImage = VueOssImage.create({
+  // global options
+})
+// In this case, there's no need to use Vue.use or app.use
 app.directive('my-directive', VueOssImage.createHooks(myOssImage))
+```
+
+### Using with the `VueLazyload` Library
+```js
+app.use(VueOssImage, {
+  // global options excluding `loading` or `error`
+  attr: 'data-src'
+})
+app.use(VueLazyload, {
+  loading: 'https://test.com/loading.png',
+  error: 'https://test.com/error.png'
+})
+```
+```html
+<div v-lazy-container="{ selector: 'img' }">
+  <img v-img="{ path: 'example.jpg' }">
+</div>
 ```
