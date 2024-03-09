@@ -1,5 +1,6 @@
 <script setup lang="ts">
-
+const lazyLoading = 'https://oss-console-img-demo-cn-hangzhou-3az.oss-cn-hangzhou.aliyuncs.com/example.gif'
+const lazyError = 'https://oss-console-img-demo-cn-hangzhou-3az.oss-cn-hangzhou.aliyuncs.com/error.jpg'
 </script>
 
 <template>
@@ -22,7 +23,7 @@
       <img v-img="{ loading: 'https://oss-console-img-demo-cn-hangzhou-3az.oss-cn-hangzhou.aliyuncs.com/example.gif', path: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=', width: 100, resizeMode: 'lfit', ratio: 4, quality: 10 }">
     </div>
 
-    <div v-lazy-container="{ selector: 'img' }" class="list">
+    <div v-lazy-container="{ selector: 'img', loading: lazyLoading, error: lazyError }" class="list">
       <img v-img="{ path: 'example.jpg', width: 100, attr: 'data-src' }">
       <img v-img="{ path: 'example.jpg', width: 110, attr: 'data-src' }">
       <img v-img="{ path: 'example.jpg', width: 120, attr: 'data-src' }">

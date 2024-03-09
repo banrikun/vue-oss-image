@@ -7,7 +7,7 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig(({ command }) => {
   const envOptions = command === 'serve'
     ? {
-      root: resolve(__dirname, 'example')
+      root: resolve(__dirname, 'examples')
     } : {
       build: {
         lib: {

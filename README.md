@@ -52,7 +52,7 @@ app.mount('#app')
 
 ## Advanced Usage
 
-### Custom Properties / Methods
+### Custom Properties and Methods
 ```js
 const myOssImage = VueOssImage.create({
   // global options
@@ -73,17 +73,18 @@ app.directive('my-directive', VueOssImage.createHooks(myOssImage))
 
 ### Using with the `VueLazyload` Library
 ```js
-app.use(VueOssImage, {
-  // global options excluding `loading` or `error`
-  attr: 'data-src'
+// <script setup>
+const loadingUrl = VueOssImage.compose({
+  host: 'https://test.com',
+  path: 'loading.png'
 })
-app.use(VueLazyload, {
-  loading: 'https://test.com/loading.png',
-  error: 'https://test.com/error.png'
+const errorUrl = VueOssImage.compose({
+  host: 'https://test.com',
+  path: 'error.png'
 })
 ```
 ```html
-<div v-lazy-container="{ selector: 'img' }">
-  <img v-img="{ path: 'example.jpg' }">
+<div v-lazy-container="{ selector: 'img', loading: loadingUrl, error: errorUrl }">
+  <img v-img="{ path: 'example.jpg', attr: 'data-src' }">
 </div>
 ```
