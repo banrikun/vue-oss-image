@@ -124,6 +124,37 @@ describe('directives', () => {
     expect(wrapper.html()).toContain('aliyuncs.com/error.gif')
   })
 
+  it('<img> beforeUpdate hook', async () => {
+    // @ts-expect-error: rewrite global Image for testing
+    global.Image = class {
+      constructor() {
+        setTimeout(() => {
+          // @ts-expect-error: mock image onload
+          this.onload()
+        }, 100)
+      }
+    }
+
+    const wrapper = createWrapper(
+      {
+        host: 'https://oss-console-img-demo-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com',
+        loading: 'loading.gif'
+      },
+      {},
+      imgComponent
+    )
+    await nextTick()
+    expect(wrapper.html()).toContain('aliyuncs.com/loading.gif')
+
+    await wrapper.setProps({
+      options: {
+        path: 'example.jpg'
+      }
+    })
+    await wait(200)
+    expect(wrapper.html()).toContain('aliyuncs.com/example.jpg')
+  })
+
   it('<div> path', async () => {
     const wrapper = createWrapper(
       {

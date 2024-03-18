@@ -50,6 +50,8 @@ app.mount('#app')
 | long | 🚫 | ✅ | [Number] Cannot be used with `width` or `height` |
 | short | 🚫 | ✅ | [Number] Cannot be used with `width` or `height` |
 
+[See more](https://www.alibabacloud.com/help/zh/oss/user-guide/img-parameters/)
+
 ## Advanced Usage
 
 ### Custom Properties and Methods
@@ -88,3 +90,8 @@ const errorUrl = VueOssImage.compose({
   <img v-img="{ path: 'example.jpg', attr: 'data-src' }">
 </div>
 ```
+
+[See more](https://github.com/hilongjw/vue-lazyload/tree/next)
+
+## License
+MIT
