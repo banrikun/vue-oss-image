@@ -38,7 +38,7 @@ app.mount('#app')
 |-|:-:|:-:|-|
 | quality | ✅ | ✅ | [Number] Quality |
 | format | ✅ | ✅ | [String] Format conversion, supports `webp` `jpg` `png` `bmp` `gif` `tiff` |
-| resizeMode | ✅ | ✅ | [String] Resize mode，supports `fill` `lfit` `mfit` `pad` `fixed`, default is `fill` |
+| resizeMode | ✅ | ✅ | [String] Resize mode, supports `fill` `lfit` `mfit` `pad` `fixed`, default is `fill` |
 | ratio | ✅ | ✅ | [Number] Resize ratio, default is `window.devicePixelRatio` |
 | loading | ✅ | ✅ | [String] Displayed during loading, with other behaviors consistent with `path` |
 | error | ✅ | ✅ | [String] Displayed in case of loading error, with other behaviors consistent with `path` |
@@ -69,7 +69,7 @@ app.use(VueOssImage, myOssImage)
 const myOssImage = VueOssImage.create({
   // global options
 })
-// In this case, there's no need to use Vue.use or app.use
+// In this case, there's no need to use `Vue.use` or `app.use`
 app.directive('my-directive', VueOssImage.createHooks(myOssImage))
 ```
 
