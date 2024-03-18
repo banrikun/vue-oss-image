@@ -1,5 +1,7 @@
-import ossUrlComposer, { TComposerParams } from './composer'
+import ossUrlComposer from './composer'
 import { copyKeys, setImageUrl } from './utils'
+
+import type { TComposerParams } from './composer'
 
 export type TGlobalOptions = {
   attr?: string

@@ -1,9 +1,7 @@
-import { TOssImage, TOssImageOptions } from './class'
+import type { TOssImage } from './class'
 
-type THookBinding = {
-  value: TOssImageOptions
-  [key: string]: any
-}
+import type { DirectiveBinding } from 'vue'
+
 type TVueImg = InstanceType<TOssImage>
 
 const createHooks = (ossImage: TOssImage) => {
@@ -23,7 +21,7 @@ const createHooks = (ossImage: TOssImage) => {
   }
 
   return {
-    created(el: HTMLElement, binding: THookBinding) {
+    created(el: HTMLElement, binding: DirectiveBinding) {
       const vImg = new ossImage(binding.value)
       if (vImg.loadingUrl || vImg.errorUrl) {
         vImg.loadingUrl && vImg.setUrl(el, vImg.loadingUrl)
@@ -33,7 +31,7 @@ const createHooks = (ossImage: TOssImage) => {
       }
     },
 
-    beforeUpdate(el: HTMLElement, binding: THookBinding) {
+    beforeUpdate(el: HTMLElement, binding: DirectiveBinding) {
       const vImg = new ossImage(binding.value)
       preload(el, vImg)
     }

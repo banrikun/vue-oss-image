@@ -3,7 +3,9 @@ import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 
 import VueOssImage from '../lib/index'
-import { TGlobalOptions, TOssImageOptions } from '../lib/class'
+
+import type { Component } from 'vue'
+import type { TGlobalOptions, TOssImageOptions } from '../lib/class'
 
 const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 const imgComponent = {
@@ -17,7 +19,7 @@ const divComponent = {
 const createWrapper = (
   globalOptions: TGlobalOptions,
   directiveOptions: TOssImageOptions,
-  component: any
+  component: Component
 ) => {
   const hooks = VueOssImage.createHooks(
     VueOssImage.create(globalOptions)
@@ -64,11 +66,11 @@ describe('directives', () => {
   })
 
   it('<img> loading + path', async () => {
-    // @ts-ignore
+    // @ts-expect-error: rewrite global Image for testing
     global.Image = class {
       constructor() {
         setTimeout(() => {
-          // @ts-ignore
+          // @ts-expect-error: mock image onload
           this.onload()
         }, 100)
       }
@@ -93,11 +95,11 @@ describe('directives', () => {
   })
 
   it('<img> loading + error', async () => {
-    // @ts-ignore
+    // @ts-expect-error: rewrite global Image for testing
     global.Image = class {
       constructor() {
         setTimeout(() => {
-          // @ts-ignore
+          // @ts-expect-error: mock image onload
           this.onerror()
         }, 100)
       }

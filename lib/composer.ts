@@ -9,7 +9,7 @@ export const resolveUrl = (host?: string, path?: string) => {
 }
 
 type TSizeParams = {
-  resizeMode?: 'lfit' | 'mfit' | 'fill' | 'pad' | 'fixed' // 默认为 fill
+  resizeMode?: 'lfit' | 'mfit' | 'fill' | 'pad' | 'fixed' // default: fill
   ratio?: number
   width?: number
   height?: number
@@ -43,7 +43,7 @@ export const getQualityQueryString = (quality?: TQuality) => {
     : ''
 }
 
-type TFormat = 'jpg' | 'png' | 'webp' | 'bmp' | 'gif' | 'tiff' // 默认为原图格式
+type TFormat = 'jpg' | 'png' | 'webp' | 'bmp' | 'gif' | 'tiff' // default: original
 const getFormatQueryString = (format?: TFormat) => {
   return format && typeof format === 'string'
     ? `format,${format}`

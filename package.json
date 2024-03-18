@@ -1,13 +1,14 @@
 {
   "name": "vue-oss-image",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "test": "vitest watch",
-    "upload": "vitest run && npm run build && npm publish"
+    "lint": "npx eslint --ext .ts,.vue .",
+    "upload": "npm run lint && vitest run && npm run build && npm publish"
   },
   "main": "dist/lib.js",
   "types": "lib/index.ts",
@@ -18,11 +19,16 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.24",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-vue": "^4.5.2",
     "@vue/test-utils": "^2.4.4",
     "axios": "^1.6.7",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.23.0",
     "jsdom": "^24.0.0",
-    "typescript": "^5.2.2",
+    "typescript": "^5.4.2",
+    "typescript-eslint": "^7.2.0",
     "vite": "^5.0.8",
     "vitest": "^1.3.1",
     "vue": "^3.3.11",
