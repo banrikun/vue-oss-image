@@ -14,7 +14,7 @@
   "homepage": "https://github.com/banrikun/vue-oss-image",
   "repository": {
     "type": "git",
-    "url": "git@github.com:banrikun/vue-oss-image.git"
+    "url": "git+ssh://git@github.com/banrikun/vue-oss-image.git"
   },
   "keywords": [
     "vue",
