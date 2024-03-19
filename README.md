@@ -36,15 +36,15 @@ app.mount('#app')
 ## Options
 | Name | Global | Directive | `.compose` | Description |
 |-|:-:|:-:|:-:|-|
-| quality | ✅ | ✅ | ✅ | [Number] Quality |
+| quality | ✅ | ✅ | ✅ | [Number] Quality, supports integers from `0` to `100` |
 | format | ✅ | ✅ | ✅ | [String] Format conversion, supports `webp` `jpg` `png` `bmp` `gif` `tiff` |
 | resizeMode | ✅ | ✅ | ✅ | [String] Resize mode, supports `fill` `lfit` `mfit` `pad` `fixed`, default is `fill` |
 | ratio | ✅ | ✅ | ✅ | [Number] Resize ratio, default is `window.devicePixelRatio` |
 | loading | ✅ | ✅ | 🚫 | [String] Displayed during loading, with other behaviors consistent with `path` |
 | error | ✅ | ✅ | 🚫 | [String] Displayed in case of loading error, with other behaviors consistent with `path` |
 | attr | ✅ | ✅ | 🚫 | [String] Specify the attribute for replacing the image URL, default is determined based on the element's `tagName` |
-| host | ✅ | ✅ | ✅ | [String] Prefix for image URLs |
-| path | 🚫 | ✅ | ✅ | [String] If it starts with `http(s)://`, `host` will be ignored. If it's a `base64` image, it will not be processed |
+| host | ✅ | ✅ | ✅ | [String] The prefix for the image URL |
+| path | 🚫 | ✅ | ✅ | [String] If it starts with `http(s)://`, `host` will be ignored. If it's a `base64` image, it will be returned as a complete URL |
 | width | 🚫 | ✅ | ✅ | [Number] Cannot be used with `long` or `short` |
 | height | 🚫 | ✅ | ✅ | [Number] Cannot be used with `long` or `short` |
 | long | 🚫 | ✅ | ✅ | [Number] Cannot be used with `width` or `height` |
