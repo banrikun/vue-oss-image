@@ -1,13 +1,5 @@
 import { deviceRatio } from './utils'
 
-export const resolveUrl = (host?: string, path?: string) => {
-  const _host = (host || '').replace(/\/$/, '')
-  const _path = (path || '').replace(/^\.*\//, '')
-  return /^https?:\/\//.test(_path)
-    ? _path
-    : `${_host}/${_path}`
-}
-
 type TSizeParams = {
   resizeMode?: 'lfit' | 'mfit' | 'fill' | 'pad' | 'fixed' // default: fill
   ratio?: number
@@ -50,13 +42,21 @@ const getFormatQueryString = (format?: TFormat) => {
     : ''
 }
 
+export const resolveUrl = (host?: string, path?: string) => {
+  const _host = (host || '').replace(/\/$/, '')
+  const _path = (path || '').replace(/^\.*\//, '')
+  return /^https?:\/\//.test(_path)
+    ? _path
+    : `${_host}/${_path}`
+}
+const isDataImage = (path: string) => /^data:image/.test(path)
+
 export type TComposerParams = TSizeParams & {
   host?: string
   path?: string
   quality?: TQuality
   format?: TFormat
 }
-const isDataImage = (path: string) => /^data:image/.test(path)
 const compose = (params: TComposerParams) => {
   if (!params.path) return ''
   if (isDataImage(params.path)) return params.path

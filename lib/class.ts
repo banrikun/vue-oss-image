@@ -39,11 +39,20 @@ export class OssImageGlobal {
     })
   }
 
-  compose(params: TComposerParams) {
+  $compose(params: TComposerParams) {
     return ossUrlComposer(params)
   }
 
-  getUrl(path: TComposerParams['path']) {
+  $setUrl(el: HTMLElement, url: string) {
+    if (!el) return
+    if (this.attr && typeof this.attr === 'string') {
+      el.setAttribute(this.attr, url)
+    } else {
+      setImageUrl(el, url)
+    }
+  }
+
+  $getUrl(path: TComposerParams['path']) {
     if (!path) return ''
     const params: TComposerParams = {}
     copyKeys({
@@ -64,28 +73,19 @@ export class OssImageGlobal {
       ]
     })
     params.path = path
-    return this.compose(params)
+    return this.$compose(params)
   }
 
-  get url() {
-    return this.getUrl(this.path)
+  get $url() {
+    return this.$getUrl(this.path)
   }
 
-  get loadingUrl() {
-    return this.getUrl(this.loading)
+  get $loadingUrl() {
+    return this.$getUrl(this.loading)
   }
 
-  get errorUrl() {
-    return this.getUrl(this.error)
-  }
-
-  setUrl(el: HTMLElement, url: string) {
-    if (!el) return
-    if (this.attr && typeof this.attr === 'string') {
-      el.setAttribute(this.attr, url)
-    } else {
-      setImageUrl(el, url)
-    }
+  get $errorUrl() {
+    return this.$getUrl(this.error)
   }
 }
 
