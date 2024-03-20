@@ -21,6 +21,8 @@ export default {
   create: createOssImage,
   createHooks,
   compose,
-  copyKeys,
-  setImageUrl
+  utils: {
+    copyKeys,
+    setImageUrl
+  }
 }

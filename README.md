@@ -36,7 +36,7 @@ app.mount('#app')
 ## Options
 | Name | Global | Directive | `.compose` | Description |
 |-|:-:|:-:|:-:|-|
-| quality | ✅ | ✅ | ✅ | [Number] Quality, supports integers from `0` to `100` |
+| quality | ✅ | ✅ | ✅ | [Number] Quality, supports integers from `1` to `100` |
 | format | ✅ | ✅ | ✅ | [String] Format conversion, supports `webp` `jpg` `png` `bmp` `gif` `tiff` |
 | resizeMode | ✅ | ✅ | ✅ | [String] Resize mode, supports `fill` `lfit` `mfit` `pad` `fixed`, default is `fill` |
 | ratio | ✅ | ✅ | ✅ | [Number] Resize ratio, default is `window.devicePixelRatio` |
@@ -59,7 +59,7 @@ app.mount('#app')
 const myOssImage = VueOssImage.create({
   // global options
 })
-myOssImage.prototype.compose = () => {}
+myOssImage.prototype.$compose = () => {}
 // Using myOssImage instead of the global options object
 app.use(VueOssImage, myOssImage)
 ```
