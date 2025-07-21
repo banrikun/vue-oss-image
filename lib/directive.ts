@@ -1,25 +1,26 @@
 import type { TOssImage } from './class'
 
-import type { DirectiveBinding } from 'vue'
+import { watchEffect } from 'vue'
+import type { DirectiveBinding, VaporDirective } from 'vue'
 
 type TVueImg = InstanceType<TOssImage>
 
-const createHooks = (ossImage: TOssImage) => {
-  const preload = (el: HTMLElement, vImg: TVueImg) => {
-    if (!vImg.$url) return
+const preload = (el: HTMLElement, vImg: TVueImg) => {
+  if (!vImg.$url) return
 
-    const virtualImg = new Image()
-    virtualImg.onload = () => {
-      vImg.$setUrl(el, vImg.$url)
-    }
-    if (vImg.$errorUrl) {
-      virtualImg.onerror = () => {
-        vImg.$setUrl(el, vImg.$errorUrl)
-      }
-    }
-    virtualImg.src = vImg.$url
+  const image = new Image()
+  image.onload = () => {
+    vImg.$setUrl(el, vImg.$url)
   }
+  if (vImg.$errorUrl) {
+    image.onerror = () => {
+      vImg.$setUrl(el, vImg.$errorUrl)
+    }
+  }
+  image.src = vImg.$url
+}
 
+export const createHooks = (ossImage: TOssImage) => {
   return {
     created(el: HTMLElement, binding: DirectiveBinding) {
       const vImg = new ossImage(binding.value)
@@ -38,4 +39,21 @@ const createHooks = (ossImage: TOssImage) => {
   }
 }
 
-export default createHooks
+export const createVaporHook = (ossImage: TOssImage): VaporDirective => {
+  return (el, source) => {
+    const vImg = new ossImage(source?.())
+    if (vImg.$loadingUrl || vImg.$errorUrl) {
+      vImg.$loadingUrl && vImg.$setUrl(el as HTMLElement, vImg.$loadingUrl)
+      preload(el as HTMLElement, vImg)
+    } else if (vImg.$url) {
+      vImg.$setUrl(el as HTMLElement, vImg.$url)
+    }
+
+    watchEffect(() => {
+      const vImg = new ossImage(source?.())
+      preload(el as HTMLElement, vImg)
+    }, {
+      flush: 'post'
+    })
+  }
+}

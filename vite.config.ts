@@ -27,15 +27,15 @@ export default defineConfig(({ command }) => {
       }
     }
 
-    return {
-      ...envOptions,
-      test: {
-        include: [resolve(__dirname, 'tests/**/*.test.ts')],
-        environment: 'jsdom',
-        watch: false
-      },
-      plugins: [vue()],
-      publicDir: false
-    }
+  return {
+    ...envOptions,
+    test: {
+      include: [resolve(__dirname, 'tests/**/*.test.ts')],
+      environment: 'jsdom',
+      watch: false
+    },
+    plugins: [vue({ vapor: true })],
+    publicDir: false
   }
+}
 )
