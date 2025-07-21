@@ -152,65 +152,6 @@ const errorUrl = VueOssImage.compose({
 </div>
 ```
 
-## 📝 Examples
-
-### Basic Image Processing
-
-```html
-<!-- Resize image -->
-<img v-img="{ path: 'photo.jpg', width: 300, height: 200 }">
-
-<!-- Convert to WebP -->
-<img v-img="{ path: 'photo.jpg', format: 'webp', quality: 85 }">
-
-<!-- Responsive image with device pixel ratio -->
-<img v-img="{ path: 'photo.jpg', width: 100, ratio: 2 }">
-```
-
-### Advanced Processing
-
-```html
-<!-- Multiple transformations -->
-<img v-img="{
-  path: 'photo.jpg',
-  width: 400,
-  height: 300,
-  resizeMode: 'lfit',
-  quality: 90,
-  format: 'webp'
-}">
-
-<!-- Background image with loading state -->
-<div v-img="{
-  path: 'background.jpg',
-  loading: 'loading.gif',
-  error: 'error.jpg',
-  width: 800,
-  height: 600
-}"></div>
-```
-
-### Dynamic Configuration
-
-```js
-// Reactive image configuration
-const imageConfig = ref({
-  path: 'dynamic-image.jpg',
-  width: 200,
-  quality: 85
-})
-
-// Update configuration
-const updateImage = () => {
-  imageConfig.value.width = 300
-  imageConfig.value.quality = 95
-}
-```
-
-```html
-<img v-img="imageConfig" @click="updateImage">
-```
-
 ## 📄 License
 
 MIT License - see [LICENSE](LICENSE) file for details.
